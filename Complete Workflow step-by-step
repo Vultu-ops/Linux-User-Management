@@ -44,6 +44,7 @@ This account is currently not available.
 
 Expected result
  The account exists, but interactive shell access is denied.
+
 Step 7. Additional verification
 grep nologin /etc/passwd
 
