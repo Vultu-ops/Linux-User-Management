@@ -1,0 +1,53 @@
+Complete the Linux lab
+Step 1. Connect to the application server
+Open your terminal (VS Code terminal or Kali terminal).
+ssh user@app-server-ip
+
+
+Replace the username and server IP with the credentials provided by KodeKloud.
+Step 2. Create a service account
+sudo useradd -m -s /usr/sbin/nologin service-user
+
+
+What each option means:
+Option	Purpose
+useradd	Creates a new user
+-m	Creates home directory
+-s	Specifies login shell
+/usr/sbin/nologin	Blocks interactive login
+
+Step 3. Verify user creation
+getent passwd service-user
+
+
+Expected output format:
+service-user:x:1003:1003::/home/service-user:/usr/sbin/nologin
+
+
+UID and GID may differ on your server.
+Step 4. Verify the home directory
+ls -ld /home/service-user
+
+
+Step 5. Check user identity
+id service-user
+
+
+This displays the UID, primary group and supplementary groups.
+Step 6. Test non-interactive shell
+sudo su service-user
+
+
+Expected output:
+This account is currently not available.
+
+
+Expected result
+ The account exists, but interactive shell access is denied.
+Step 7. Additional verification
+grep nologin /etc/passwd
+
+
+This lists accounts configured with a nologin shell.
+
+Important: A non-interactive shell prevents normal shell login; it does not prevent every possible form of access or stop authorized services from running under that identity.
